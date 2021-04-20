@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function book(bookid,title,author,price){
+      this.bookid = bookid;
+      this.title = title;
+      this.author = author;
+      this.price = price;
+      this.print = printbook;
+    }
+    function printbook(){
+      document.write("書籍ID："+this.bookid+"<br/>");
+      document.write("書名：" + this.title + "<br/>");
+      document.write("作者：" + this.author + "<br/>");
+      document.write("價格：" + this.price + "<br/><hr/>");
+    }
+  </script>
+</head>
+<body>
+  <script>
+    var objbook = new book("A12345","小王子","prince","$350");
+    var objbook_2 = new book("B12255", "飢餓遊戲","David","$490");
+    objbook.print();
+    objbook_2.print();
+  </script>
+   
+</body>
+</html>
