@@ -6,13 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    p{
+      font-size: 25px;
+    }
     ul {
       font-size: 25px;
       font-family: "標楷體";
     }
 
     body {
-      padding: 10px 25px 15px 25px ;
+      padding: 10px 25px 15px 25px;
       columns: 2;
       column-rule: silver solid 2px;
       font-family: "標楷體";
@@ -21,128 +24,137 @@
     }
 
     /*標題*/
-    h1{
-      -webkit-column-break-before: always ;
+    h1 {
+      -webkit-column-break-before: always;
     }
+
     /*專業文字設定*/
-    .n{
+    .n {
       font-size: 25px;
     }
 
     /*專業比例設定*/
-    .p1{
+    .p1 {
       font-size: 25px;
       box-sizing: border-box;
       width: 50%;
       background-color: white;
     }
 
-    .s1{
+    .s1 {
       text-align: center;
       border: solid black;
       width: 90%;
-      background-color:#0476aa;
-    }
-    .s1:hover{
-      text-align: right;
-      width: 90%;
-      background-color:#0476aa;
-      transition:0.5s;
-      transform:rotate(360deg);
+      background-color: #0476aa;
     }
 
-    .s2{
+    .s1:hover {
+      text-align: right;
+      width: 90%;
+      background-color: #0476aa;
+      transition: 0.5s;
+      transform: rotate(360deg);
+    }
+
+    .s2 {
       text-align: center;
       border: solid black;
       width: 95%;
-      background-color:#0476aa;
+      background-color: #0476aa;
     }
-    .s2:hover{
+
+    .s2:hover {
       text-align: right;
       width: 95%;
-      background-color:#0476aa;
-      transition:0.5s;
-      transform:rotate(360deg);
-      }
+      background-color: #0476aa;
+      transition: 0.5s;
+      transform: rotate(360deg);
+    }
 
-    .s3{
+    .s3 {
       text-align: center;
       border: solid black;
       width: 85%;
-      background-color:#0476aa;
+      background-color: #0476aa;
     }
-    .s3:hover{
+
+    .s3:hover {
       text-align: right;
       width: 85%;
-      background-color:#0476aa;
-      transition:0.5s;
-      transform:rotate(360deg);
-      }
+      background-color: #0476aa;
+      transition: 0.5s;
+      transform: rotate(360deg);
+    }
 
-    .s4{
+    .s4 {
       text-align: center;
       border: solid black;
       width: 80%;
-      background-color:#0476aa;
+      background-color: #0476aa;
     }
-    .s4:hover{
+
+    .s4:hover {
       text-align: right;
       width: 80%;
-      background-color:#0476aa;
-      transition:0.5s;
-      transform:rotate(360deg);
-      }
+      background-color: #0476aa;
+      transition: 0.5s;
+      transform: rotate(360deg);
+    }
 
-    .s5{
+    .s5 {
       text-align: center;
       border: solid black;
       width: 90%;
-      background-color:#0476aa;
+      background-color: #0476aa;
     }
-    .s5:hover{
+
+    .s5:hover {
       text-align: right;
       width: 90%;
-      background-color:#0476aa;
-      transition:0.5s;
-      transform:rotate(360deg);
-      }
+      background-color: #0476aa;
+      transition: 0.5s;
+      transform: rotate(360deg);
+    }
 
-    .s6{
+    .s6 {
       text-align: center;
       border: solid black;
       width: 85%;
-      background-color:#0476aa;
+      background-color: #0476aa;
     }
-    .s6:hover{
+
+    .s6:hover {
       text-align: right;
       width: 85%;
-      background-color:#0476aa;
-      transition:0.5s;
-      transform:rotate(360deg);
-      }
+      background-color: #0476aa;
+      transition: 0.5s;
+      transform: rotate(360deg);
+    }
 
-    .s7{
+    .s7 {
       text-align: center;
       border: solid black;
       width: 80%;
-      background-color:#0476aa;
+      background-color: #0476aa;
     }
-    .s7:hover{
+
+    .s7:hover {
       text-align: right;
       width: 80%;
-      background-color:#0476aa;
-      transition:0.5s;
-      transform:rotate(360deg);
-      }
+      background-color: #0476aa;
+      transition: 0.5s;
+      transform: rotate(360deg);
+    }
 
     /*個人基本資訊轉圈*/
     .t2:hover~.t3 {
       transition: 2.5s;
       transform: rotatey(360deg);
     }
+
     .t3:hover {
-    transition: 2.5s;
-    transform: rotatey(360deg);
+      transition: 2.5s;
+      transform: rotatey(360deg);
     }
 
     /*圖片*/
@@ -159,8 +171,8 @@
     }
 
     .i3 {
-    height: 40%;
-    width: 40%;
+      height: 40%;
+      width: 40%;
     }
 
     /*圖片轉圈*/
@@ -170,8 +182,8 @@
     }
 
     .i1:hover {
-    transition: 1s;
-    transform: rotatey(360deg);
+      transition: 1s;
+      transform: rotatey(360deg);
     }
 
     /*個人經歷*/
@@ -179,115 +191,139 @@
       box-sizing: border-box;
     }
 
+    /*時間軸*/
     .timeline {
-      position: relative;
-      max-width: 500px;
-      margin: 0 auto;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
     }
 
     .timeline::after {
-      content: '';
-      position: absolute;
-      width: 6px;
-      background-color: black;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -3px;
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: white;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
     }
 
     .container {
-      padding: 10px 40px;
-      position: relative;
-      background-color: inherit;
-      width: 50%;
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
     }
 
     .container::after {
-      content: '';
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      right: -17px;
-      background-color: white;
-      border: 4px solid #FF9F55;
-      top: 15px;
-      border-radius: 50%;
-      z-index: 1;
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: white;
+    border: 4px solid #FF9F55;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
     }
 
     .left {
-      left: 0;
+    left: 0;
     }
 
     .right {
-      left: 50%;
+    left: 50%;
     }
 
     .left::before {
-      content: " ";
-      height: 0;
-      position: absolute;
-      top: 22px;
-      width: 0;
-      z-index: 1;
-      right: 30px;
-      border: medium solid white;
-      border-width: 10px 0 10px 10px;
-      border-color: transparent transparent transparent white;
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid white;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent white;
     }
 
     .right::before {
-      content: " ";
-      height: 0;
-      position: absolute;
-      top: 22px;
-      width: 0;
-      z-index: 1;
-      left: 30px;
-      border: medium solid white;
-      border-width: 10px 10px 10px 0;
-      border-color: transparent white transparent transparent;
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
     }
 
     .right::after {
-      left: -16px;
+    left: -16px;
     }
 
     .content {
-      padding: 20px 30px;
-      background-color: white;
-      position: relative;
-      border-radius: 6px;
+    padding: 20px 30px;
+    background-color: white;
+    position: relative;
+    border-radius: 6px;
     }
 
     @media screen and (max-width: 600px) {
-      .timeline::after {
-      left: 31px;
-      }
+    .timeline::after {
+    left: 31px;
     }
-
+    
     .container {
-      width: 100%;
-      padding-left: 70px;
-      padding-right: 25px;
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
     }
 
     .container::before {
-      left: 60px;
-      border: medium solid white;
-      border-width: 10px 10px 10px 0;
-      border-color: transparent white transparent transparent;
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
     }
 
     .left::after, .right::after {
-      left: 15px;
+    left: 15px;
     }
 
     .right {
-      left: 0%;
+    left: 0%;
+    }
     }
 
+    .accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+    }
+
+    .active, .accordion:hover {
+    background-color: #ccc;
+    }
+
+    .panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+    }
   </style>
 </head>
 
@@ -307,19 +343,33 @@
   <div>
     <h2 class="skill">個人專業與技能</h2>
     <div class="n">Windows</div>
-    <div class="p1"><div class="s1">90%</div></div>
+    <div class="p1">
+      <div class="s1">90%</div>
+    </div>
     <div class="n">C</div>
-    <div class="p1"><div class="s2">95%</div></div>
+    <div class="p1">
+      <div class="s2">95%</div>
+    </div>
     <div class="n">Python</div>
-    <div class="p1"><div class="s3">85%</div></div>
+    <div class="p1">
+      <div class="s3">85%</div>
+    </div>
     <div class="n">Java</div>
-    <div class="p1"><div class="s4">80%</div></div>
+    <div class="p1">
+      <div class="s4">80%</div>
+    </div>
     <div class="n">HTML</div>
-    <div class="p1"><div class="s5">90%</div></div>
+    <div class="p1">
+      <div class="s5">90%</div>
+    </div>
     <div class="n">CSS</div>
-    <div class="p1"><div class="s6">85%</div></div>
+    <div class="p1">
+      <div class="s6">85%</div>
+    </div>
     <div class="n">JavaScript</div>
-    <div class="p1"><div class="s7">80%</div></div>
+    <div class="p1">
+      <div class="s7">80%</div>
+    </div>
   </div>
   <div>
     <h2 class="t2">學習經歷</h2>
@@ -346,14 +396,13 @@
     </div>
 
     <div class="timeline">
-      <div class="container left">
+      <div class="container right">
         <div class="content">
-          <h2>2020大二上學期</h2>
-          <h3>企業概論-王爸爸咖啡屋</h3>
-          <img src="/img/e1.jpg">
-          <img src="/img/e2.jpg">
+          <h2>109-2</h2>
+          <h3>管理學-服務學習(圖書館藏書閣撰寫)</h3>
+          <a href="https://michael168999.github.io/LibPrj/index.htm"><img src="/img/e3.jpg" class="i3"></a>
           <p>
-            幫助孩子的書屋銷售商品，讓他們利用所得繼續他們的慈善事業。
+            幫助讀者更快找到書籍。
           </p>
         </div>
       </div>
@@ -361,10 +410,10 @@
 
     <div>
       <h2>2021大二下學期</h2>
-      
+
     </div>
   </div>
-  
+
   <div>
     <h2>聯絡資訊</h2>
     <a href="https://www.facebook.com/profile.php?id=100003021355744"><img src="/img/connection1.png" class="i2"></a>
