@@ -1,0 +1,85 @@
+
+
+<html>
+<script>
+var row="";
+var bs=new Array(1000);
+//for(var i = 0; i < 100; i++) 
+//  bs[i]=new Array(2);
+bs[0]="73,4-2";
+bs[1]="145.02,4-3";
+bs[2]="176.52,4-4";
+bs[3]="177.2,4-5";
+bs[4]="178.8,4-6";
+bs[5]="192,4-7";
+bs[6]="200,4-35";
+bs[7]="221.4,4-36";
+bs[8]="240,4-33";
+bs[9]="241.017,4-34";
+bs[10]="242.017,4-37";
+bs[11]="245,4-38";
+bs[12]="300,4-8";
+bs[13]="312.16,4-9";
+bs[14]="312.49,4-10";
+bs[15]="312.8,4-11";
+bs[16]="312.91,4-12";
+bs[17]="312.94,4-13";
+bs[18]="313,4-14";
+bs[19]="333,4-15";
+bs[20]="362,4-16";
+bs[21]="397.18,4-17";
+bs[22]="415,4-18";
+bs[23]="424.4,4-19";
+bs[24]="440.6,4-20";
+bs[25]="443.8,4-21";
+bs[26]="447.16,4-22";
+bs[27]="448.68,4-23";
+bs[28]="471.56,4-24";
+bs[29]="493.6,4-25";
+bs[30]="494.1,4-26";
+bs[31]="494.2,4-27";
+bs[32]="494.5,4-28";
+bs[33]="494.74,4-29";
+bs[34]="496,4-30";
+
+
+
+function findit() {
+	//alert('hello');
+
+	var idx = document.myform.idx.value;
+	//alert(idx);
+
+	if(idx=="")
+	{
+		alert("索書號不能為空");
+		return false;
+	}
+
+	for(var i = 34; i >= 0; i--){
+		// alert(bs[i]);
+		row=bs[i].split(',');
+		if (parseFloat(idx) >= parseFloat(row[0])){
+			//alert("BookShelf: "+row[1]);
+			location.href=row[1]+'.jpg';
+			return false;
+		}
+	}
+}
+
+</script>
+<body>
+<pre>
+<h1 c><font color=blue>Where To Find It?(藏書閣)</font></h1>
+<hr>
+<img src="ex.jpg" width="30%">
+
+
+<h2>請輸入索書號(CALL NO)：
+<form name='myform' onsubmit=''>
+第一組(ex: 312.32)：<input type=text value='312.32' name='idx'> <input type='button' value='送出(Submit)' onclick='findit()'>
+</form>
+</h2>
+</pre>
+</body>
+</html>
