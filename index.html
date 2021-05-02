@@ -1,32 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script>
-    function book(bookid,title,author,price){
-      this.bookid = bookid;
-      this.title = title;
-      this.author = author;
-      this.price = price;
-      this.print = printbook;
+  <style>
+    ul {
+      font-size: 25px;
+      font-family: "標楷體";
     }
-    function printbook(){
-      document.write("書籍ID："+this.bookid+"<br/>");
-      document.write("書名：" + this.title + "<br/>");
-      document.write("作者：" + this.author + "<br/>");
-      document.write("價格：" + this.price + "<br/><hr/>");
+
+    body {
+      padding: 10px 25px 15px 25px ;
+      columns: 2;
+      column-rule: silver solid 2px;
+      font-family: "標楷體";
+      background: url(/img/bg.png) repeat;
+      border: solid;
     }
-  </script>
+
+    /*標題*/
+    h1{
+      -webkit-column-break-before: always ;
+    }
+    /*專業文字設定*/
+    .n{
+      font-size: 25px;
+    }
+
+    /*專業比例設定*/
+    .p1{
+      font-size: 25px;
+      box-sizing: border-box;
+      width: 50%;
+      background-color: white;
+    }
+
+    .s1{
+      text-align: center;
+      border: solid black;
+      width: 90%;
+      background-color:#0476aa;
+    }
+    .s1:hover{
+      text-align: right;
+      width: 90%;
+      background-color:#0476aa;
+      transition:0.5s;
+      transform:rotate(360deg);
+    }
+
+    .s2{
+      text-align: center;
+      border: solid black;
+      width: 95%;
+      background-color:#0476aa;
+    }
+    .s2:hover{
+      text-align: right;
+      width: 95%;
+      background-color:#0476aa;
+      transition:0.5s;
+      transform:rotate(360deg);
+      }
+
+    .s3{
+      text-align: center;
+      border: solid black;
+      width: 85%;
+      background-color:#0476aa;
+    }
+    .s3:hover{
+      text-align: right;
+      width: 85%;
+      background-color:#0476aa;
+      transition:0.5s;
+      transform:rotate(360deg);
+      }
+
+    .s4{
+      text-align: center;
+      border: solid black;
+      width: 80%;
+      background-color:#0476aa;
+    }
+    .s4:hover{
+      text-align: right;
+      width: 80%;
+      background-color:#0476aa;
+      transition:0.5s;
+      transform:rotate(360deg);
+      }
+
+    .s5{
+      text-align: center;
+      border: solid black;
+      width: 90%;
+      background-color:#0476aa;
+    }
+    .s5:hover{
+      text-align: right;
+      width: 90%;
+      background-color:#0476aa;
+      transition:0.5s;
+      transform:rotate(360deg);
+      }
+
+    .s6{
+      text-align: center;
+      border: solid black;
+      width: 85%;
+      background-color:#0476aa;
+    }
+    .s6:hover{
+      text-align: right;
+      width: 85%;
+      background-color:#0476aa;
+      transition:0.5s;
+      transform:rotate(360deg);
+      }
+
+    .s7{
+      text-align: center;
+      border: solid black;
+      width: 80%;
+      background-color:#0476aa;
+    }
+    .s7:hover{
+      text-align: right;
+      width: 80%;
+      background-color:#0476aa;
+      transition:0.5s;
+      transform:rotate(360deg);
+      }
+
+    /*個人基本資訊轉圈*/
+    .t2:hover~.t3 {
+      transition: 2.5s;
+      transform: rotatey(360deg);
+    }
+    .t3:hover {
+    transition: 2.5s;
+    transform: rotatey(360deg);
+    }
+
+    /*圖片*/
+    .i1 {
+      height: 30%;
+      width: 30%;
+      border-radius: 100px;
+    }
+
+    .i2 {
+      height: 10%;
+      width: 10%;
+      border-radius: 25px;
+    }
+
+    .i3 {
+    height: 40%;
+    width: 40%;
+    }
+
+    /*圖片轉圈*/
+    .t1:hover~.i1 {
+      transition: 1s;
+      transform: rotatey(360deg);
+    }
+
+    .i1:hover {
+    transition: 1s;
+    transform: rotatey(360deg);
+    }
+
+    /*個人經歷*/
+    * {
+      box-sizing: border-box;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: black;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+
+    .container {
+      padding: 10px 40px;
+      position: relative;
+      background-color: inherit;
+      width: 50%;
+    }
+
+    .container::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      right: -17px;
+      background-color: white;
+      border: 4px solid #FF9F55;
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .left {
+      left: 0;
+    }
+
+    .right {
+      left: 50%;
+    }
+
+    .left::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 22px;
+      width: 0;
+      z-index: 1;
+      right: 30px;
+      border: medium solid white;
+      border-width: 10px 0 10px 10px;
+      border-color: transparent transparent transparent white;
+    }
+
+    .right::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 22px;
+      width: 0;
+      z-index: 1;
+      left: 30px;
+      border: medium solid white;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent white transparent transparent;
+    }
+
+    .right::after {
+      left: -16px;
+    }
+
+    .content {
+      padding: 20px 30px;
+      background-color: white;
+      position: relative;
+      border-radius: 6px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .timeline::after {
+      left: 31px;
+      }
+    }
+
+    .container {
+      width: 100%;
+      padding-left: 70px;
+      padding-right: 25px;
+    }
+
+    .container::before {
+      left: 60px;
+      border: medium solid white;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent white transparent transparent;
+    }
+
+    .left::after, .right::after {
+      left: 15px;
+    }
+
+    .right {
+      left: 0%;
+    }
+
+  </style>
 </head>
+
 <body>
-  <script>
-    var objbook = new book("A12345","小王子","prince","$350");
-    var objbook_2 = new book("B12255", "飢餓遊戲","David","$490");
-    objbook.print();
-    objbook_2.print();
-  </script>
-   
+  <div>
+    <h1 class="t1">林鑫磊(Hsin-Lei Lin)</h1>
+    <h2 class="t2">個人基本資訊</h2>
+    <img src="/img/p1.jpg" class="i1">
+    <ul class="t3">
+      <li>中原大學資管二乙</li>
+      <li>性別：男</li>
+      <li>生日：7/12</li>
+      <li>興趣：唱歌</li>
+      <li>一個追逐夢想，非常忙碌的人</li>
+    </ul>
+  </div>
+  <div>
+    <h2 class="skill">個人專業與技能</h2>
+    <div class="n">Windows</div>
+    <div class="p1"><div class="s1">90%</div></div>
+    <div class="n">C</div>
+    <div class="p1"><div class="s2">95%</div></div>
+    <div class="n">Python</div>
+    <div class="p1"><div class="s3">85%</div></div>
+    <div class="n">Java</div>
+    <div class="p1"><div class="s4">80%</div></div>
+    <div class="n">HTML</div>
+    <div class="p1"><div class="s5">90%</div></div>
+    <div class="n">CSS</div>
+    <div class="p1"><div class="s6">85%</div></div>
+    <div class="n">JavaScript</div>
+    <div class="p1"><div class="s7">80%</div></div>
+  </div>
+  <div>
+    <h2 class="t2">學習經歷</h2>
+    <ul class="t3">
+      <li>2020/09~中原大學</li>
+      <li>2019/09~2020/06銘傳大學</li>
+      <li>2016/09~2019/06治平高中</li>
+    </ul>
+  </div>
+  <div>
+    <h1>個人經歷</h1>
+    <div class="timeline">
+      <div class="container left">
+        <div class="content">
+          <h2>2020大二上學期</h2>
+          <h3>企業概論-王爸爸咖啡屋</h3>
+          <img src="/img/e1.jpg" class="i3">
+          <img src="/img/e2.jpg" class="i3">
+          <p>
+            幫助孩子的書屋銷售商品，讓他們利用所得繼續他們的慈善事業。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="container left">
+        <div class="content">
+          <h2>2020大二上學期</h2>
+          <h3>企業概論-王爸爸咖啡屋</h3>
+          <img src="/img/e1.jpg">
+          <img src="/img/e2.jpg">
+          <p>
+            幫助孩子的書屋銷售商品，讓他們利用所得繼續他們的慈善事業。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2>2021大二下學期</h2>
+      
+    </div>
+  </div>
+  
+  <div>
+    <h2>聯絡資訊</h2>
+    <a href="https://www.facebook.com/profile.php?id=100003021355744"><img src="/img/connection1.png" class="i2"></a>
+    <a href="mailto:michaellin@cycu.org.tw"><img src="/img/connection2.png" class="i2"></a>
+  </div>
 </body>
+
 </html>
