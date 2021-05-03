@@ -29,6 +29,10 @@
       -webkit-column-break-before: always;
     }
 
+    h3 {
+      font-size: 25px;
+    }
+
     /*專業文字設定*/
     .n {
       font-size: 25px;
@@ -172,8 +176,8 @@
     }
 
     .i3 {
-      height: 40%;
-      width: 40%;
+      height: 60%;
+      width: 60%;
     }
 
     /*圖片轉圈*/
@@ -304,11 +308,11 @@
     }
 
     .accordion {
-      background-color: #eee;
+      background-color: white;
       color: #444;
       cursor: pointer;
       padding: 18px;
-      width: 40%;
+      width: 100%;
       border: none;
       text-align: left;
       outline: none;
@@ -385,12 +389,13 @@
   </div>
   <div>
     <h1>個人經歷</h1>
-    <button class="accordion">109-2</button>
-    <div class="panel">
-      <div class="timeline">
-        <div class="container left">
-          <div class="content">
-            <h2>109-2</h2>
+
+    <div class="timeline">
+      <div class="container left">
+        <div class="content">
+          <button class="accordion">109-2</button>
+          <div class="panel">
+            <h2>109-2~6/10</h2>
             <h3>管理學-服務學習(圖書館藏書閣撰寫)</h3>
             <a href="https://michael168999.github.io/LibPrj/index.htm"><img src="img/e3.jpg" class="i3"></a>
             <p>
@@ -402,45 +407,59 @@
     </div>
 
     <div class="timeline">
-      <div class="container right">
+      <div class="container left">
         <div class="content">
-          <h2>109-1</h2>
-          <h3>企業概論-王爸爸咖啡屋</h3>
-          <img src="img/e1.jpg" class="i3">
-          <img src="img/e2.jpg" class="i3">
-          <p>
-            幫助孩子的書屋銷售商品，讓他們利用所得繼續他們的慈善事業。
-          </p>
+          <button class="accordion">109-2</button>
+          <div class="panel">
+            <h2>109-2~4/30</h2>
+            <h3>企資通-應用層-DNS</h3>
+            <a href="https://michael168999.github.io/LibPrj/index.htm"><img src="img/e3.jpg" class="i3"></a>
+            <p>
+              將課程內容以情境化擬人的方式設計成故事，以便日後快速複習及回憶。
+            </p>
+          </div>
         </div>
       </div>
     </div>
-    <div>
-      <h2>2021大二下學期</h2>
 
+    <div class="timeline">
+      <div class="container right">
+        <div class="content">
+          <button class="accordion">109-1</button>
+          <div class="panel">
+            <h2>109-1~12/30</h2>
+            <h3>企業概論-王爸爸咖啡屋</h3>
+            <img src="img/e1.jpg" class="i3">
+            <img src="img/e2.jpg" class="i3">
+            <p>
+              幫助孩子的書屋銷售商品，讓他們利用所得繼續他們的慈善事業。
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div>
-    <h2>聯絡資訊</h2>
-    <a href="https://www.facebook.com/profile.php?id=100003021355744"><img src="img/connection1.png" class="i2"></a>
-    <a href="mailto:michaellin@cycu.org.tw"><img src="img/connection2.png" class="i2"></a>
-  </div>
-  <script>
-    var acc = document.getElementsByClassName("accordion");
-    var i;
+    <div>
+      <h2>聯絡資訊</h2>
+      <a href="https://www.facebook.com/profile.php?id=100003021355744"><img src="img/connection1.png" class="i2"></a>
+      <a href="mailto:michaellin@cycu.org.tw"><img src="img/connection2.png" class="i2"></a>
+    </div>
+    <script>
+      var acc = document.getElementsByClassName("accordion");
+      var i;
 
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-          panel.style.display = "none";
-        } else {
-          panel.style.display = "block";
-        }
-      });
-    }
-  </script>
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+          var panel = this.nextElementSibling;
+          if (panel.style.display === "block") {
+            panel.style.display = "none";
+          } else {
+            panel.style.display = "block";
+          }
+        });
+      }
+    </script>
 </body>
 
 </html>
