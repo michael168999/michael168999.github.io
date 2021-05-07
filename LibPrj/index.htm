@@ -57,6 +57,11 @@ bs[47]="856.8,5-W24";
 bs[48]="857.2,5-W25_W28";
 bs[49]="859.6,5-W29";
 bs[50]="861.56,5-W30_W35";
+bs[51]="900,5-25";
+bs[52]="920.7,5-26";
+bs[53]="943.5,5-27";
+bs[54]="961.05,5-28";
+bs[55]="987.31,5-29";
 
 
 function findit() {
@@ -71,7 +76,7 @@ function findit() {
 		return false;
 	}
 
-	for(var i = 34; i >= 0; i--){
+	for(var i = 55; i >= 0; i--){
 		// alert(bs[i]);
 		row=bs[i].split(',');
 		if (parseFloat(idx) >= parseFloat(row[0])){
