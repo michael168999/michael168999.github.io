@@ -31,13 +31,15 @@
         <p><b>請輸入帳密:</b></p> <br></br>
         
     </div>
-    <form>
+        
         <div class="board">
-            帳號:&nbsp<textarea name="account" cols="40" rows="1" wrap="hard"> </textarea><br>
-			密碼:&nbsp<textarea name="password" cols="40" rows="1" wrap="hard"> </textarea>
-            <input type="submit" value="送出" /><br>
-			<a href="regis.html">點此連結建立帳號</a>
+            <form name="loginForm" action="getdata.jsp">
+                帳號:&nbsp<input type="text" name="account"></br><br>
+                密碼:&nbsp<input type="text" name="password"></br><br>
+                <input type="submit" value="送出"><br>
+            </form>
 
+			<br><br><a href="regis.html">點此連結建立帳號</a>
 
         </div>
     </form>

@@ -31,18 +31,18 @@
         <p><b>註冊帳號</b></p> <br></br>
         
     </div>
-    <form>
+    <form name="testForm" action="adddata.jsp">
         <div class="board">
-            姓名:&nbsp<textarea name="account" cols="40" rows="1" wrap="hard"> </textarea><br>
-			性別:&nbsp<input type="radio" name="sex" value="male" checked/ >男生
-			<input type="radio" name="sex" value="female" />女生<br>
-			生日:&nbsp<input type="date" name="selectdate"/><br>
-			手機:&nbsp<textarea name="password" cols="40" rows="1" wrap="hard"> </textarea><br>
-			地址:&nbsp<textarea name="password" cols="40" rows="1" wrap="hard"> </textarea><br>
-			帳號:&nbsp<textarea name="password" cols="40" rows="1" wrap="hard"> </textarea><br>
-			密碼:&nbsp<textarea name="password" cols="40" rows="1" wrap="hard"> </textarea><br></br>
-            <input type="submit" value="送出" />
 
+            姓名:<input type="text" name="name"><br><br>
+            性別:<input type="radio" name="sex" value="male" checked>男生
+                <input type="radio" name="sex" value="female" />女生<br><br>
+            生日:<input type="text" name="birth"><br><br>
+            手機:<input type="text" name="phone"><br><br>
+            地址:<input type="text" name="addr"><br><br>
+            帳號:<input type="text" name="account"><br><br>
+            密碼:<input type="text" name="pass"><br><br>
+            <input type="submit" value="送出" />
 
         </div>
     </form>

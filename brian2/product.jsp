@@ -98,8 +98,10 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
             </select>
+			
+			
         </form>
-
+		
         <%= "<button  class=\"btna\"  onclick=\"document.location='order.jsp?product="+p+order+"&id="+id+"'\">下訂</button>"%>            
 
         <%
@@ -108,6 +110,23 @@
             }
           
         %>
+<div class="review">
+	<img src="image/icon5.jpg" width="150" height="150">
+	<p>評語:產品品質優良，令人放心</p><p>星等:五星</p>
+			<img src="image/icon6.jpg" width="150" height="150">
+	<p>評語:產品作工精細，還不錯</p><p>星等:四星</p>
+	<p>在此留下評價<br><textarea name="memo" cols="40" rows="4" wrap="hard"> </textarea><br>
+	<label>星等:</label>
+            <select name="amount" id="amount">
+                <option value="1">五星</option>    
+                <option value="2">四星</option>
+                <option value="3">三星</option>
+                <option value="4">二星</option>
+				<option value="5">一星</option>
+				<option value="6">負評</option>
+            </select><br>
+            <input type="submit" value="送出" /></p>
+	</div>
 
 
 
