@@ -1,0 +1,152 @@
+<head>
+<style>
+	.information{
+		position:absolute;
+		z-index:1;
+		font-size:24px;
+		color:blue;
+		top: 10px;
+	}
+	#RedLine{
+		width: 150px;  /* 線條長度(對角線) */
+		height: 5px; /* 線條粗細 */
+		background-color: red; /* 線條顏色 */
+		transform: rotate(0deg); /* 線條旋轉角度 */
+		position: absolute;
+		z-index:1;
+		top: 0px;
+		left: 0px;
+		
+	}
+	#map{
+		position:absolute;
+		z-index:0;
+	}
+	#btn{
+		position:absolute;
+		top: 20px;
+		left:400px;
+		z-index:1;
+		font-size:30px;
+		color:red;
+	}
+	#star{
+		position:absolute;
+		z-index:2;
+		top:0;
+		left:0;
+	}
+</style>
+<script language="JavaScript" type="text/javascript">
+
+	var url=location.search;
+	var Request = new Object();
+　　if(url.indexOf("?")!=-1)
+　　{
+		var str = decodeURI(url.substring(1)); //去掉?號及URL解碼
+		strs = str.split("&");
+		// Request["msg"]= "HI";
+		for(var i=0;i<strs.length;i++)
+		{
+			//Request[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
+			Request[strs[i].split("=")[0]] = strs[i].split("=")[1];
+			//alert(strs[i].split("=")[0]);
+		}
+　　}
+　　
+function reloadSubWindow(){
+ 
+ location.reload();
+}
+
+</script>
+</head>
+<body >
+<img src="4.jpg" id="map"><BR>
+<img src="star.gif" id="star" width=16><BR>
+<div id="RedLine"></div>
+<table class="information">
+<TR><TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;樓層 Floor：</TD><TD><div id="floor">000</div></TD></TR>
+<TR><TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;架號 Bookshelf-No：</TD><TD><div id="no">000</div></TD></TR>
+<TR><TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索書號 Call NO：</TD><TD><div id="idx">xxx</div></TD></TR>
+</table>
+<input id="btn" type="button" value="返回(Back)" onclick="location.href ='index.html'">
+<script language="JavaScript" type="text/javascript">
+
+	var floor = Request["floor"];
+	//alert(floor);
+	document.getElementById("floor").innerHTML = floor;
+
+	var no = Request["no"];
+	//alert(no);
+	document.getElementById("no").innerHTML = no;
+
+	var idx = Request["idx"];
+	//alert(idx);
+	document.getElementById("idx").innerHTML = idx;
+
+	document.getElementById("map").src = floor + ".jpg";
+
+	var x = Request["x"];
+	//document.getElementById("x").innerHTML = x;
+	var y = Request["y"];
+	//document.getElementById("y").innerHTML = y;
+	//alert(x+","+y);
+	
+var x1=460;//底圖寬度/2
+var y1=400;//底圖高度/2
+var x2=parseInt(x);//架位x
+var y2=parseInt(y);//架位y
+
+var x_start = x1;
+var y_start = y1;
+var x_end = x2;
+var y_end = y2;
+var deg = 0;
+var cx = 0; // 校正非垂直線的x坐標位置
+if (y_start == y_end) // 畫水平線
+{
+	y-=8; // 校正水平時星星的y坐標位置
+	if (x_start > x_end) {
+		var t = x_start;
+		x_start = x_end;
+		x_end = t
+		deg = 180;
+	}
+	length = Math.abs(x_end - x_start);    
+} else if (x_start == x_end) // 畫垂直線
+{
+	x-=8; // 校正垂直時星星的x坐標位置
+	deg = 90;
+	if (y_start > y_end) {
+		var t = y_start;
+		y_start = y_end;
+		y_end = t
+		deg = 270;
+	}
+	length = Math.abs(y_end - y_start);
+} else {// 畫線旋轉角度
+	var lx = x_end - x_start;
+	var ly = y_end - y_start;
+	var length = Math.sqrt(lx * lx + ly * ly); //計算連線長度
+	var c = 360 * Math.atan2(ly, lx) / (2 * Math.PI); //弧度值轉換爲角度值
+	c = c <= -90 ? (360 + c) : c;  //負角轉換爲正角
+	deg = c;
+	cx = 8; // 校正非垂直線的x坐標位置
+	//deg = 0;
+}
+
+//顯示星星圖片
+//(x,y)應該是圖片的中心點
+//(left,top)為圖片的左上角
+// 故(left,top)應扣掉圖片長寬的一半(16/2=8)→往左上方校正顯示位置
+document.getElementById("star").style.left = x;
+document.getElementById("star").style.top = y;
+
+var RedLine = document.getElementById("RedLine");
+RedLine.style.width = length;
+RedLine.style.transform = "rotate(" + deg + "deg)";
+RedLine.style.top = (y_start + y_end)/2;
+RedLine.style.left = (x_start + x_end - length)/2 + cx;
+</script>
+</body>
