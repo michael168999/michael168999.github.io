@@ -1,0 +1,161 @@
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <title>火車時刻暨表最近列車速查</title>
+ <link rel="stylesheet" type="text/css" href="spiffyCal/spiffyCal_v2_1.css">
+ <script type="text/javascript" src="spiffyCal/spiffyCal_v2_1.js"></script>
+ <script type="text/javascript">
+   var dateAvailable = new ctlSpiffyCalendarBox("dateAvailable", "myForm", "myDate","btnDate1","", 2);
+ </script>
+</head>
+
+<script type="text/javascript">
+
+function addZero(i) { // 個位數者前面補 0
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+function doSubmit(n, kind) {
+
+	var dd = new Date();
+	var hh = addZero(dd.getHours());
+	var mm = addZero(dd.getMinutes());
+	var yymmdd = dd.getFullYear() + "/" + addZero(dd.getMonth()+1) + "/" + addZero(dd.getDate()); // 取得當天日期
+
+  with(document.myForm) {
+    rideDate.value = myDate.value;
+    //alert("in doSubmit()#1: action=" + action);
+    //alert("in doSubmit()#5: myDate=" + myDate.value);
+    //alert("in doSubmit()#3: rideDate=" + rideDate.value);
+
+	if (n == 1) {
+	  station.value = "1110-埔心";
+	}
+	else if (n == 3) {
+	  station.value = "1100-中壢";
+	}
+	else if (n == 5) {
+	  station.value = "1080-桃園";
+	}
+	else if (n == 7) {
+	  station.value = "1000-臺北";
+	}
+	else if (n == 9) {
+	  station.value = "1090-內壢";
+	}
+	else if (n == 11) {
+	  station.value = "1210-新竹";
+	}
+	else if (n == 2) {
+	  startStation.value = "1110-埔心";
+      endStation.value = "1080-桃園";
+	}
+	else if (n == 4) {
+	  startStation.value = "1110-埔心";
+      endStation.value = "1100-中壢";
+	}
+	else if (n == 6) {
+	  startStation.value = "1110-埔心";
+      endStation.value = "1000-臺北";
+	}
+	else if (n == 8) {
+	  startStation.value = "1100-中壢";
+      endStation.value = "1000-臺北";
+	}
+	else if (n == 10) {
+	  startStation.value = "1080-桃園";
+      endStation.value = "1110-埔心";
+	}
+	else if (n == 12) {
+	  startStation.value = "1100-中壢";
+      endStation.value = "1110-埔心";
+	}
+	else if (n == 14) {
+	  startStation.value = "1000-臺北";
+      endStation.value = "1110-埔心";
+	}
+	else if (n == 16) {
+	  startStation.value = "1000-臺北";
+      endStation.value = "1100-中壢";
+	}
+	else if (n == 18) {
+	  startStation.value = "1110-埔心";
+      endStation.value = "1210-新竹";
+	}
+	else if (n == 20) {
+	  startStation.value = "1210-新竹";
+      endStation.value = "1110-埔心";
+	}
+	else if (n == 22) {
+	  startStation.value = "1090-內壢";
+      endStation.value = "1110-埔心";
+	}
+	else if (n == 24) {
+	  startStation.value = "1110-埔心";
+      endStation.value = "1090-內壢";
+	}
+
+	if (kind == 2) { // 依起迄站查詢
+		//alert(yymmdd);
+		if (rideDate.value == yymmdd) { // 若為當天只查從現在起班次，預設為 00:00 全天所有班次
+			startTime.value = hh + ":" + mm;
+			//alert("hh:mm →" + startTime.value);
+		}
+		action = "https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip112/querybytime";
+	}
+	else { // 依站別查詢
+		action = "https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip112/querybystation";
+	}
+
+	// 查詢會用到的參數
+	//startStation=1080-桃園
+	//endStation=1110-埔心
+	//station=1110-埔心
+	//rideDate=2019/09/03
+	//startTime=15:30
+	//endTime=23:59
+	//trainTypeList=ALL
+
+    //alert("in doSubmit()#2==" + myForm.action);
+    // 改用 https 及 port
+    // document.form.action = document.form.action.replace("http","https").replace(":8080",":4330");
+
+	submit();
+  }
+} // doSumit
+
+</script>
+
+<body>
+
+<div id="spiffycalendar" class="text"></div>
+
+<pre>
+<h1><font color=blue>火車時刻表暨各站最近列車速查 <<a href="https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip112/gobystation">台鐵</a>></font>
+<form name="myForm" method="get" action="test" ><input name="trainTypeList" value="ALL" type="hidden"><input name="startStation" value="1110-埔心" type="hidden"><input name="endStation" value="1080-桃園" type="hidden"><input name="station" value="1110-埔心" type="hidden"><input name="startTime" value="05:00" type="hidden"><input name="endTime" value="23:59" type="hidden"><input name="rideDate" value="2020/01/01" type="hidden">
+各站當日所有班次速查
+<small>(順行↑北上、逆行↓南下)</small> <!-- 查詢時須帶當天日期 -->
+<input type="button" onClick="doSubmit(1,1)" value="埔心站">&nbsp;&nbsp;<input type="button" onClick="doSubmit(7,1)" value="台北站">
+<input type="button" onClick="doSubmit(9,1)" value="內壢站">&nbsp;&nbsp;<input type="button" onClick="doSubmit(5,1)" value="桃園站">
+<input type="button" onClick="doSubmit(3,1)" value="中壢站">&nbsp;&nbsp;<input type="button" onClick="doSubmit(11,1)" value="新竹站">
+
+指定日期及起迄站班次速查
+<small>可選日期：(YYYY/MM/DD)<BR>(下個畫面請按查詢鈕)</small>
+<script type="text/javascript">dateAvailable.writeControl(); dateAvailable.dateFormat="yyyy/MM/dd";</script> 
+<input type="button" onClick="doSubmit(24,2)" value="埔心→內壢">&nbsp;&nbsp;<input type="button" onClick="doSubmit(22,2)" value="內壢→埔心">
+<input type="button" onClick="doSubmit(4,2)" value="埔心→中壢">&nbsp;&nbsp;<input type="button" onClick="doSubmit(12,2)" value="中壢→埔心">
+<input type="button" onClick="doSubmit(2,2)" value="埔心→桃園">&nbsp;&nbsp;<input type="button" onClick="doSubmit(10,2)" value="桃園→埔心">
+<input type="button" onClick="doSubmit(6,2)" value="埔心→台北">&nbsp;&nbsp;<input type="button" onClick="doSubmit(14,2)" value="台北→埔心">
+<input type="button" onClick="doSubmit(8,2)" value="中壢→台北">&nbsp;&nbsp;<input type="button" onClick="doSubmit(16,2)" value="台北→中壢">
+<input type="button" onClick="doSubmit(18,2)" value="埔心→新竹">&nbsp;&nbsp;<input type="button" onClick="doSubmit(20,2)" value="新竹→埔心">
+</form>
+<a href="http://web.metro.taipei/img/all/metrotaipeimap.jpg">※ 台北捷運路網圖(官網中英文連結) ※</a>
+
+<a href="bus.htm">※ 公車時刻 ※</a>
+</h1>
+</pre>
+本頁QRCode：<BR><img src="train_qr.png">
+</body><html>
