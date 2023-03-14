@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    #question {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .choice {
+      display: block;
+      padding: 8px;
+      margin-bottom: 8px;
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .choice:hover {
+      background-color: #e0e0e0;
+    }
+
+    .choice.selected-a {
+      background-color: #008000;
+      color: #fff;
+    }
+	.choice.selected-b {
+      background-color: #ff0000;
+      color: #fff;
+    }
+
+    #submit {
+      display: block;
+      margin-top: 10px;
+      padding: 8px;
+      background-color: #f4f4f4;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    #submit:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz</h1>
+    <div id="question"></div>
+	<div id="image"></div>
+    <div id="choices"></div>
+    <button id="submit">Submit</button>
+  </div>
+
+  <script>
+  const questions = [
+    {
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/2/21/001Bulbasaur.png/300px-001Bulbasaur.png",
+      choices: ["妙蛙草", "妙蛙種子", "妙蛙花"],
+      answer: "妙蛙種子"
+    },
+    {
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/7/73/002Ivysaur.png/300px-002Ivysaur.png",
+      choices: ["妙蛙草", "妙蛙種子", "妙蛙花"],
+      answer: "妙蛙草"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/a/ae/003Venusaur.png/300px-003Venusaur.png",
+      choices: ["超級妙蛙花", "超極巨化妙蛙花", "妙蛙花"],
+      answer: "妙蛙花"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/7/73/003Venusaur-Mega.png/300px-003Venusaur-Mega.png",
+      choices: ["超級妙蛙花", "超極巨化妙蛙花", "妙蛙花"],
+      answer: "超級妙蛙花"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/8/8a/003Venusaur-Gigantamax.png/300px-003Venusaur-Gigantamax.png",
+      choices: ["超級妙蛙花", "超極巨化妙蛙花", "妙蛙花"],
+      answer: "超極巨化妙蛙花"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/7/73/004Charmander.png/300px-004Charmander.png",
+      choices: ["小火龍", "火恐龍", "噴火龍"],
+      answer: "小火龍"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/4/4a/005Charmeleon.png/300px-005Charmeleon.png",
+      choices: ["小火龍", "火恐龍", "噴火龍"],
+      answer: "火恐龍"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/7/7e/006Charizard.png/300px-006Charizard.png",
+      choices: ["超級噴火龍Ｙ", "噴火龍", "超級噴火龍X"],
+      answer: "噴火龍"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/3/36/006Charizard-Mega_X.png/300px-006Charizard-Mega_X.png",
+      choices: ["超級噴火龍Ｙ", "超極巨化噴火龍", "超級噴火龍X"],
+      answer: "超級噴火龍X"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/f/fd/006Charizard-Mega_Y.png/300px-006Charizard-Mega_Y.png",
+      choices: ["超級噴火龍Ｙ", "噴火龍", "超級噴火龍X"],
+      answer: "超級噴火龍Ｙ"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/8/88/006Charizard-Gigantamax.png/300px-006Charizard-Gigantamax.png",
+      choices: ["超級噴火龍Ｙ", "超極巨化噴火龍", "超級噴火龍X"],
+      answer: "超極巨化噴火龍"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/3/39/007Squirtle.png/300px-007Squirtle.png",
+      choices: ["傑尼龜", "卡咪龜", "水箭龜"],
+      answer: "傑尼龜"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/0/0c/008Wartortle.png/300px-008Wartortle.png",
+      choices: ["傑尼龜", "卡咪龜", "水箭龜"],
+      answer: "卡咪龜"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/0/02/009Blastoise.png/300px-009Blastoise.png",
+      choices: ["傑尼龜", "超極巨化水箭龜", "水箭龜"],
+      answer: "水箭龜"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/d/dc/009Blastoise-Gigantamax.png/300px-009Blastoise-Gigantamax.png",
+      choices: ["超級水箭龜", "超極巨化水箭龜", "水箭龜"],
+      answer: "超極巨化水箭龜"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/8/85/009Blastoise-Mega.png/300px-009Blastoise-Mega.png",
+      choices: ["超級水箭龜", "超極巨化水箭龜", "水箭龜"],
+      answer: "超級水箭龜"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/5/5d/010Caterpie.png/300px-010Caterpie.png",
+      choices: ["綠毛蟲", "鐵甲蛹", "巴大蝶"],
+      answer: "綠毛蟲"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/c/cd/011Metapod.png/300px-011Metapod.png",
+      choices: ["綠毛蟲", "鐵甲蛹", "巴大蝶"],
+      answer: "鐵甲蛹"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/d/d1/012Butterfree.png/300px-012Butterfree.png",
+      choices: ["狩獵鳳蝶", "超極巨化巴大蝶", "巴大蝶"],
+      answer: "巴大蝶"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/f/fd/012Butterfree-Gigantamax.png/300px-012Butterfree-Gigantamax.png",
+      choices: ["狩獵鳳蝶", "超極巨化巴大蝶", "巴大蝶"],
+      answer: "超極巨化巴大蝶"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/d/df/013Weedle.png/300px-013Weedle.png",
+      choices: ["獨角蟲", "鐵殼蛹", "大針蜂"],
+      answer: "獨角蟲"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/f/f0/014Kakuna.png/300px-014Kakuna.png",
+      choices: ["獨角蟲", "鐵殼蛹", "大針蜂"],
+      answer: "鐵殼蛹"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/6/61/015Beedrill.png/300px-015Beedrill.png",
+      choices: ["蜂女王", "超級大針蜂", "大針蜂"],
+      answer: "大針蜂"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/7/76/015Beedrill-Mega.png/300px-015Beedrill-Mega.png",
+      choices: ["蜂女王", "超級大針蜂", "大針蜂"],
+      answer: "超級大針蜂"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/5/55/016Pidgey.png/300px-016Pidgey.png",
+      choices: ["波波", "比比鳥", "大比鳥"],
+      answer: "波波"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/7/7a/017Pidgeotto.png/300px-017Pidgeotto.png",
+      choices: ["波波", "比比鳥", "大比鳥"],
+      answer: "比比鳥"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/5/57/018Pidgeot.png/300px-018Pidgeot.png",
+      choices: ["超級大比鳥", "象徵鳥", "大比鳥"],
+      answer: "大比鳥"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/7/71/018Pidgeot-Mega.png/300px-018Pidgeot-Mega.png",
+      choices: ["超級大比鳥", "象徵鳥", "大比鳥"],
+      answer: "超級大比鳥"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/4/46/019Rattata.png/300px-019Rattata.png",
+      choices: ["阿羅拉小拉達", "小拉達", "拉達"],
+      answer: "小拉達"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/9/91/019Rattata-Alola.png/300px-019Rattata-Alola.png",
+      choices: ["阿羅拉小拉達", "小拉達", "拉達"],
+      answer: "阿羅拉小拉達"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/7/71/020Raticate-Alola.png/300px-020Raticate-Alola.png",
+      choices: ["阿羅拉拉達", "探探鼠", "拉達"],
+      answer: "阿羅拉拉達"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/f/f4/020Raticate.png/300px-020Raticate.png",
+      choices: ["阿羅拉拉達", "探探鼠", "拉達"],
+      answer: "拉達"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/8/8b/021Spearow.png/300px-021Spearow.png",
+      choices: ["烈雀", "鳳王", "大嘴雀"],
+      answer: "烈雀"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/a/a0/022Fearow.png/300px-022Fearow.png",
+      choices: ["烈雀", "鳳王", "大嘴雀"],
+      answer: "大嘴雀"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/f/fa/023Ekans.png/300px-023Ekans.png",
+      choices: ["阿柏蛇", "阿柏怪", "飯匙蛇"],
+      answer: "阿柏蛇"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/c/cd/024Arbok.png/300px-024Arbok.png",
+      choices: ["阿柏蛇", "阿柏怪", "飯匙蛇"],
+      answer: "阿柏怪"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/0/0d/025Pikachu.png/260px-025Pikachu.png",
+      choices: ["皮卡丘", "流行偶像皮卡丘", "博士皮卡丘"],
+      answer: "皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/e/e8/025Pikachu-Pop_Star.png/260px-025Pikachu-Pop_Star.png",
+      choices: ["皮卡丘", "流行偶像皮卡丘", "博士皮卡丘"],
+      answer: "流行偶像皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/f/f0/025Pikachu-Belle.png/260px-025Pikachu-Belle.png",
+      choices: ["貴婦皮卡丘", "流行偶像皮卡丘", "博士皮卡丘"],
+      answer: "貴婦皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/4/4f/025Pikachu-Rock_Star.png/260px-025Pikachu-Rock_Star.png",
+      choices: ["搖滾巨星皮卡丘", "流行偶像皮卡丘", "博士皮卡丘"],
+      answer: "搖滾巨星皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/2/2f/025Pikachu-PhD.png/260px-025Pikachu-PhD.png",
+      choices: ["搖滾巨星皮卡丘", "流行偶像皮卡丘", "博士皮卡丘"],
+      answer: "博士皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/e/e7/025Pikachu-Libre.png/260px-025Pikachu-Libre.png",
+      choices: ["搖滾巨星皮卡丘", "面罩摔角手皮卡丘", "博士皮卡丘"],
+      answer: "面罩摔角手皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/1/17/025Pikachu-Original.png/260px-025Pikachu-Original.png",
+      choices: ["初始皮卡丘", "就決定是你了皮卡丘", "世界皮卡丘"],
+      answer: "初始皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/4/44/025Pikachu-Hoenn.png/260px-025Pikachu-Hoenn.png",
+      choices: ["神奧皮卡丘", "合眾皮卡丘", "豐緣皮卡丘"],
+      answer: "豐緣皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/a/a4/025Pikachu-Sinnoh.png/260px-025Pikachu-Sinnoh.png",
+      choices: ["神奧皮卡丘", "合眾皮卡丘", "豐緣皮卡丘"],
+      answer: "神奧皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/e/e6/025Pikachu-Unova.png/260px-025Pikachu-Unova.png",
+      choices: ["神奧皮卡丘", "合眾皮卡丘", "卡洛斯皮卡丘"],
+      answer: "合眾皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/4/44/025Pikachu-Kalos.png/260px-025Pikachu-Kalos.png",
+      choices: ["阿羅拉皮卡丘", "合眾皮卡丘", "卡洛斯皮卡丘"],
+      answer: "卡洛斯皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/e/e3/025Pikachu-Alola.png/260px-025Pikachu-Alola.png",
+      choices: ["阿羅拉皮卡丘", "世界皮卡丘", "卡洛斯皮卡丘"],
+      answer: "阿羅拉皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/7/75/025Pikachu-Partner.png/260px-025Pikachu-Partner.png",
+      choices: ["阿羅拉皮卡丘", "世界皮卡丘", "就決定是你了皮卡丘"],
+      answer: "就決定是你了皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/4/4c/025Pikachu-World.png/260px-025Pikachu-World.png",
+      choices: ["阿羅拉皮卡丘", "世界皮卡丘", "就決定是你了皮卡丘"],
+      answer: "世界皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/6/6b/025Pikachu-Gigantamax.png/260px-025Pikachu-Gigantamax.png",
+      choices: ["超極巨化皮卡丘", "世界皮卡丘", "就決定是你了皮卡丘"],
+      answer: "超極巨化皮卡丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/8/88/026Raichu.png/300px-026Raichu.png",
+      choices: ["皮卡丘", "雷丘", "阿羅拉雷丘"],
+      answer: "雷丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/3/3a/026Raichu-Alola.png/300px-026Raichu-Alola.png",
+      choices: ["皮卡丘", "雷丘", "阿羅拉雷丘"],
+      answer: "阿羅拉雷丘"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/9/9e/027Sandshrew.png/300px-027Sandshrew.png",
+      choices: ["穿山鼠", "阿羅拉穿山鼠", "阿羅拉雷丘"],
+      answer: "穿山鼠"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/c/c9/027Sandshrew-Alola.png/300px-027Sandshrew-Alola.png",
+      choices: ["穿山鼠", "阿羅拉穿山鼠", "阿羅拉雷丘"],
+      answer: "阿羅拉穿山鼠"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/0/0b/028Sandslash.png/300px-028Sandslash.png",
+      choices: ["穿山鼠", "阿羅拉穿山王", "穿山王"],
+      answer: "穿山王"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/b/bd/028Sandslash-Alola.png/300px-028Sandslash-Alola.png",
+      choices: ["穿山鼠", "阿羅拉穿山王", "穿山王"],
+      answer: "阿羅拉穿山王"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/8/80/029Nidoran%E2%99%80.png/300px-029Nidoran%E2%99%80.png",
+      choices: ["尼多蘭", "尼多娜", "尼多朗"],
+      answer: "尼多蘭"
+    },
+	{
+      question: "我是",
+	  image: "https://s1.52poke.wiki/wiki/thumb/c/cd/030Nidorina.png/300px-030Nidorina.png",
+      choices: ["尼多蘭", "尼多娜", "尼多朗"],
+      answer: "尼多娜"
+    },
+  ];
+
+const questionEl = document.getElementById('question');
+const choicesEl = document.getElementById('choices');
+const submitBtn = document.getElementById('submit');
+// 將問題隨機排序
+questions.sort(() => Math.random() - 0.5);
+let currentQuestion = 0;
+const maxQuestions = 20;
+function showQuestion() {
+  if (currentQuestion >= maxQuestions) {
+    showResults();
+    return;
+  }
+  const question = questions[currentQuestion];
+  questionEl.textContent = question.question;
+  choicesEl.innerHTML = '';
+  if (question.image) {
+  const imageEl = document.createElement('img');
+  imageEl.src = question.image;
+  imageEl.alt = question.question;
+  imageEl.style.display = 'block';
+  imageEl.style.margin = '20px auto';
+  imageEl.style.maxWidth = '100%';
+  document.getElementById('image').appendChild(imageEl);
+} else {
+  // 如果這個問題沒有圖片，則將可能存在的前一個圖片清除掉
+  document.getElementById('image').innerHTML = '';
+}
+
+  if (question.choices.length > 0) {
+    question.choices.forEach(choice => {
+      const choiceEl = document.createElement('div');
+      choiceEl.classList.add('choice');
+      choiceEl.dataset.choice = choice;
+      choiceEl.textContent = choice;
+      choicesEl.appendChild(choiceEl);
+
+      // 將已選擇的選項取消選擇
+      if (questions[currentQuestion].selectedChoice === choice) {
+        choiceEl.classList.remove('selected');
+      }
+
+      // 檢查 answerSubmitted 是否為 true 並禁用事件監聽器
+      if (questions[currentQuestion].answerSubmitted) {
+        choiceEl.removeEventListener('click', checkAnswer);
+        choiceEl.style.pointerEvents = 'none';
+      } else {
+        choiceEl.addEventListener('click', checkAnswer);
+      }
+    });
+  }
+}
+
+function nextQuestion() {
+  document.getElementById('image').innerHTML = '';
+  currentQuestion++;
+  if (currentQuestion >= maxQuestions) {
+    showResults();
+  } else {
+    showQuestion();
+    submitBtn.textContent = 'Submit';
+    submitBtn.style.backgroundColor = '#f4f4f4';
+    submitBtn.style.color = '#000';
+    submitBtn.style.borderColor = '#000';
+    submitBtn.style.cursor = 'default';
+    submitBtn.removeEventListener('click', nextQuestion);
+  }
+}
+// 新增一個名為 selectedChoice 的屬性來跟踪每個問題的選擇答案
+function checkAnswer(e) {
+  const selectedChoice = e.target.dataset.choice;
+  const answer = questions[currentQuestion].answer;
+  if (selectedChoice == answer) {
+    e.target.classList.add('selected-a');
+    submitBtn.style.backgroundColor = '#008000';
+    submitBtn.style.color = '#fff';
+    submitBtn.style.borderColor = '#008000';
+    // 保存選擇的答案
+    questions[currentQuestion].selectedChoice = selectedChoice;
+  } 
+  else {
+    e.target.classList.add('selected-b');
+    submitBtn.style.backgroundColor = '#ff0000';
+    submitBtn.style.color = '#fff';
+    submitBtn.style.borderColor = '#ff0000';
+    choicesEl.querySelector(`[data-choice="${answer}"]`).classList.add('selected-a');
+    // 保存選擇的答案
+    questions[currentQuestion].selectedChoice = selectedChoice;
+  }
+  submitBtn.style.cursor = 'pointer';
+  submitBtn.removeEventListener('click', checkAnswer);
+  submitBtn.addEventListener('click', nextQuestion);
+  submitBtn.textContent = currentQuestion == questions.length - 1 ? 'Finish' : 'Next';
+  // 設置 answerSubmitted 屬性來鎖定選擇
+  questions[currentQuestion].answerSubmitted = true;
+  // 禁用所有選項的點擊事件和指針事件
+  const choiceEls = document.querySelectorAll('.choice');
+  choiceEls.forEach(choiceEl => {
+    choiceEl.removeEventListener('click', checkAnswer);
+    choiceEl.style.pointerEvents = 'none';
+  });
+}
+
+
+function showResults() {
+  questionEl.textContent = '測驗完成!';
+  choicesEl.innerHTML = '';
+  // 計算正確答案的數量
+  const numCorrect = questions.filter(question => question.answer === question.selectedChoice).length;
+  const resultEl = document.createElement('div');
+  resultEl.textContent = `共答對 ${numCorrect} / 20 題!`;
+  choicesEl.appendChild(resultEl);
+  submitBtn.style.display = 'none';
+}
+
+  showQuestion();
+</script>
+</body>
+</html>
