@@ -68,13 +68,13 @@
 </head>
 <body>
   <div class="container">
-    <h1>Quiz</h1>
+    <h1><div id="question-num"></div></h1>
     <div id="question"></div>
 	<div id="image"></div>
     <div id="choices"></div>
     <button id="submit">Submit</button>
   </div>
-
+	
   <script>
   const questions = [
     {
@@ -483,6 +483,9 @@ function showQuestion() {
       }
     });
   }
+  // 顯示目前作答的題數
+  const questionNumEl = document.getElementById('question-num');
+  questionNumEl.textContent = `Question ${currentQuestion + 1} of ${maxQuestions}`;
 }
 
 function nextQuestion() {
