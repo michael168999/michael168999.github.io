@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #question {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .choice {
+      display: block;
+      padding: 12px;
+      margin-bottom: 12px;
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      cursor: pointer;
+	  font-size: 28px;
+    }
+
+    .choice:hover {
+      background-color: #e0e0e0;
+    }
+
+    .choice.selected-a {
+      background-color: #008000;
+      color: #fff;
+    }
+	.choice.selected-b {
+      background-color: #ff0000;
+      color: #fff;
+    }
+
+    #submit {
+      display: block;
+      margin-top: 20px;
+      padding: 12px;
+	  font-size: 24px;
+      background-color: #f4f4f4;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #submit:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><div id="question-num"></div></h1>
+    <div id="question"></div>
+	<div id="image"></div>
+    <div id="choices"></div>
+    <button id="submit">Submit</button>
+  </div>
+	
+  <script>
+  const questions = [
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/b/bf/152Chikorita.png/300px-152Chikorita.png',
+	'choices': ['菊草葉', '月桂葉', '大竺葵'],
+	'answer': '菊草葉'
+	},
+	{
+	'question': '我是', 
+	'image': 'https://s1.52poke.wiki/wiki/thumb/c/ca/153Bayleef.png/300px-153Bayleef.png', 
+	'choices': ['菊草葉', '月桂葉', '大竺葵'],
+	'answer': '月桂葉'
+	},
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/d/d1/154Meganium.png/300px-154Meganium.png', 
+	'choices': ['菊草葉', '月桂葉', '大竺葵'],
+	'answer': '大竺葵'
+	},
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/9/9b/155Cyndaquil.png/300px-155Cyndaquil.png',
+	'choices': ['火球鼠', '火岩鼠', '火爆獸'],
+	'answer': '火球鼠'
+	},
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/b/b6/156Quilava.png/300px-156Quilava.png', 
+	'choices': ['火球鼠', '火岩鼠', '火爆獸'], 
+	'answer': '火岩鼠'
+	},
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/4/47/157Typhlosion.png/300px-157Typhlosion.png', 
+	'choices': ['火岩鼠', '火爆獸', '洗翠火爆獸'],
+	'answer': '火爆獸'
+	},
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/b/b7/157Typhlosion-Hisui.png/300px-157Typhlosion-Hisui.png', 
+	'choices': ['火岩鼠', '火爆獸', '洗翠火爆獸'],
+	'answer': '洗翠火爆獸'
+	},
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/d/df/158Totodile.png/300px-158Totodile.png', 
+	'choices': ['小鋸鱷', '藍鱷', '大力鱷'],
+	'answer': '小鋸鱷'
+	},
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/a/a5/159Croconaw.png/300px-159Croconaw.png', 
+	'choices': ['小鋸鱷', '藍鱷', '大力鱷'],
+	'answer': '藍鱷'
+	},
+	{
+	'question': '我是', 
+	'image': 'https://s1.52poke.wiki/wiki/thumb/d/d5/160Feraligatr.png/300px-160Feraligatr.png', 
+	'choices': ['小鋸鱷', '藍鱷', '大力鱷'],
+	'answer': '大力鱷'
+	},
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/c/c5/161Sentret.png/300px-161Sentret.png',
+	'choices': ['尾立', '大尾立', '大尾狸'],
+	'answer': '尾立'
+	},
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/4/4b/162Furret.png/300px-162Furret.png', 
+	'choices': ['尾立', '大尾立', '大尾狸'],
+	'answer': '大尾立'
+	},
+	{
+	'question': '我是', 
+	'image': 'https://s1.52poke.wiki/wiki/thumb/5/53/163Hoothoot.png/300px-163Hoothoot.png', 
+	'choices': ['咕咕', '貓頭夜鷹', '毛頭小鷹'],
+	'answer': '咕咕'
+	},
+	{'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/f/fa/164Noctowl.png/300px-164Noctowl.png', 
+	'choices': ['咕咕', '貓頭夜鷹', '勇士雄鷹'],
+	'answer': '貓頭夜鷹'
+	},
+	{'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/b/bb/165Ledyba.png/300px-165Ledyba.png', 
+	'choices': ['芭瓢蟲', '安瓢蟲', '膽小蟲'], 
+	'answer': '芭瓢蟲'
+	},
+	{
+	'question': '我是', 
+	'image': 'https://s1.52poke.wiki/wiki/thumb/5/5b/166Ledian.png/300px-166Ledian.png', 
+	'choices': ['芭瓢蟲', '安瓢蟲', '膽小蟲'],
+	'answer': '安瓢蟲'
+	},
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/7/75/167Spinarak.png/300px-167Spinarak.png', 
+	'choices': ['圓絲蛛', '阿利多斯', '電蜘蛛'],
+	'answer': '圓絲蛛'
+	},
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/7/76/168Ariados.png/300px-168Ariados.png', 
+	'choices': ['圓絲蛛', '阿利多斯', '電蜘蛛'], 
+	'answer': '阿利多斯'
+	},
+	{
+	'question': '我是',
+	'image': 'https://s1.52poke.wiki/wiki/thumb/1/17/169Crobat.png/300px-169Crobat.png', 
+	'choices': ['叉字蝠', '超音蝠', '大嘴蝠'],
+	'answer': '叉字蝠'
+	},
+	{
+	'question': '我是', 
+	'image': 'https://s1.52poke.wiki/wiki/thumb/d/d9/170Chinchou.png/300px-170Chinchou.png', 
+	'choices': ['燈籠魚', '電燈怪', '螢光魚'],
+	'answer': '燈籠魚'
+	},
+  ];
+
+const questionEl = document.getElementById('question');
+const choicesEl = document.getElementById('choices');
+const submitBtn = document.getElementById('submit');
+// 將問題隨機排序
+questions.sort(() => Math.random() - 0.5);
+let currentQuestion = 0;
+const maxQuestions = 20;
+function showQuestion() {
+  if (currentQuestion >= maxQuestions) {
+    showResults();
+    return;
+  }
+  const question = questions[currentQuestion];
+  questionEl.textContent = question.question;
+  choicesEl.innerHTML = '';
+  if (question.image) {
+  const imageEl = document.createElement('img');
+  imageEl.src = question.image;
+  imageEl.alt = question.question;
+  imageEl.style.display = 'block';
+  imageEl.style.margin = '20px auto';
+  imageEl.style.maxWidth = '100%';
+  document.getElementById('image').appendChild(imageEl);
+} else {
+  // 如果這個問題沒有圖片，則將可能存在的前一個圖片清除掉
+  document.getElementById('image').innerHTML = '';
+}
+
+  if (question.choices.length > 0) {
+    question.choices.forEach(choice => {
+      const choiceEl = document.createElement('div');
+      choiceEl.classList.add('choice');
+      choiceEl.dataset.choice = choice;
+      choiceEl.textContent = choice;
+      choicesEl.appendChild(choiceEl);
+
+      // 將已選擇的選項取消選擇
+      if (questions[currentQuestion].selectedChoice === choice) {
+        choiceEl.classList.remove('selected');
+      }
+
+      // 檢查 answerSubmitted 是否為 true 並禁用事件監聽器
+      if (questions[currentQuestion].answerSubmitted) {
+        choiceEl.removeEventListener('click', checkAnswer);
+        choiceEl.style.pointerEvents = 'none';
+      } else {
+        choiceEl.addEventListener('click', checkAnswer);
+      }
+    });
+  }
+  // 顯示目前作答的題數
+  const questionNumEl = document.getElementById('question-num');
+  questionNumEl.textContent = `Question ${currentQuestion + 1} of ${maxQuestions}`;
+}
+
+function nextQuestion() {
+  document.getElementById('image').innerHTML = '';
+  currentQuestion++;
+  if (currentQuestion >= maxQuestions) {
+    showResults();
+  } else {
+    showQuestion();
+    submitBtn.textContent = 'Submit';
+    submitBtn.style.backgroundColor = '#f4f4f4';
+    submitBtn.style.color = '#000';
+    submitBtn.style.borderColor = '#000';
+    submitBtn.style.cursor = 'default';
+    submitBtn.removeEventListener('click', nextQuestion);
+  }
+}
+// 新增一個名為 selectedChoice 的屬性來跟踪每個問題的選擇答案
+function checkAnswer(e) {
+  const selectedChoice = e.target.dataset.choice;
+  const answer = questions[currentQuestion].answer;
+  if (selectedChoice == answer) {
+    e.target.classList.add('selected-a');
+    submitBtn.style.backgroundColor = '#008000';
+    submitBtn.style.color = '#fff';
+    submitBtn.style.borderColor = '#008000';
+    // 保存選擇的答案
+    questions[currentQuestion].selectedChoice = selectedChoice;
+  } 
+  else {
+    e.target.classList.add('selected-b');
+    submitBtn.style.backgroundColor = '#ff0000';
+    submitBtn.style.color = '#fff';
+    submitBtn.style.borderColor = '#ff0000';
+    choicesEl.querySelector(`[data-choice="${answer}"]`).classList.add('selected-a');
+    // 保存選擇的答案
+    questions[currentQuestion].selectedChoice = selectedChoice;
+  }
+  submitBtn.style.cursor = 'pointer';
+  submitBtn.removeEventListener('click', checkAnswer);
+  submitBtn.addEventListener('click', nextQuestion);
+  submitBtn.textContent = currentQuestion == questions.length - 1 ? 'Finish' : 'Next';
+  // 設置 answerSubmitted 屬性來鎖定選擇
+  questions[currentQuestion].answerSubmitted = true;
+  // 禁用所有選項的點擊事件和指針事件
+  const choiceEls = document.querySelectorAll('.choice');
+  choiceEls.forEach(choiceEl => {
+    choiceEl.removeEventListener('click', checkAnswer);
+    choiceEl.style.pointerEvents = 'none';
+  });
+}
+
+
+function showResults() {
+  questionEl.textContent = '測驗完成!';
+  choicesEl.innerHTML = '';
+  // 計算正確答案的數量
+  const numCorrect = questions.filter(question => question.answer === question.selectedChoice).length;
+  const resultEl = document.createElement('div');
+  resultEl.textContent = `共答對 ${numCorrect} / 20 題!`;
+  choicesEl.appendChild(resultEl);
+  submitBtn.style.display = 'none';
+}
+
+  showQuestion();
+</script>
+</body>
+</html>
