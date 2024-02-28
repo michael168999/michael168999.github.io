@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bus Page</title>
+    <meta charset="UTF-8">
+    <style>
+        button {
+            display: block;
+            margin: 0 auto;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 100px;
+        }
+        span {
+            text-align: center;
+            font-size: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <span id="time"></span>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#473')">美術館正門75</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#2907')">東興大墩五街127</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#2317')">11九九往中山堂</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#3348')">11美村藥局往中山堂</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#617')">11中山堂回家</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#4801')">環中豐樂路口127</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#217')">五權東興回家</button><br>
+    <button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#111')">二市回家30、40</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#736')">五權學士路口回家</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#859')">北屯行政大樓回家</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#858')">北屯行政大樓菜園</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#340')">中友正對面往菜園</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#226')">中友加油站對面往菜園</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#891')">錦村市場回家</button><br>
+	<button onclick="openAndCloseBusLink('https://citybus.taichung.gov.tw/estop/#3746')">居士林櫻花站回家</button><br>
+    <script>
+		function openAndCloseBusLink(url) {
+            // 開啟新窗口
+            var newWindow = window.open(url, '_blank');
+
+            // 設置定時器30秒後關閉窗口
+            setTimeout(function() {
+                if (newWindow) {
+                    newWindow.close();
+                }
+            }, 30000);
+        }
+
+        setInterval(function(){
+            var time = new Date().toLocaleTimeString();
+            document.getElementById("time").innerHTML = time;
+        }, 1000);
+    </script>
+</body>
+</html>
