@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>離線行事曆＋農民曆＋事件＋待辦（Android 本機｜IndexedDB）</title>
+  <title>離線行事曆＋農民曆＋事件＋待辦</title>
   <style>
     :root{
       /* 亮色主題（預設） */
@@ -152,7 +152,7 @@
           </div>
         </form>
         <div id="eventList" class="list"></div>
-        <div class="hint">行程使用 <b>IndexedDB</b> 儲存。跨日、重複（每天/每週/每月，含「每隔 N」）皆可；列表顯示的是「當日落在的實際發生」。</div>
+        <br><br><br><div class="hint">行程使用 <b>IndexedDB</b> 儲存。跨日、重複（每天/每週/每月，含「每隔 N」）皆可；列表顯示的是「當日落在的實際發生」。</div>
       </div>
 
       <div class="card">
@@ -162,14 +162,9 @@
           <button id="addTodo">新增</button>
         </form>
         <div id="todoList" class="list"></div>
-        <div class="hint">待辦亦存於 <b>IndexedDB</b>。</div>
+        <br><br><br><div class="hint">待辦亦存於 <b>IndexedDB</b>。</div>
       </div>
     </section>
-
-    <div class="footer">
-      <div>此頁可直接在 Android 檔案管理器以 Chrome 開啟（<code>file://</code>）。無需伺服器。Service Worker/PWA 在此模式下不啟用。</div>
-      <div>（選用）若要顯示完整農民曆與時辰吉凶：將 <code>lunar.min.js</code> 放在本檔同資料夾，並於底部取消註解對應 <code>&lt;script&gt;</code>。</div>
-    </div>
   </div>
 
   <!-- OpenCC（瀏覽器）— 你提供的 UMD 版本：簡體→繁體 -->
@@ -493,42 +488,6 @@
     // ========== 啟動 ==========
     renderDOW();
     renderCalendar();
-  </script>
-
-  <!-- ========== 自動化小測試（在瀏覽器主控台查看） ========== -->
-  <script>
-    (function runSelfTests(){
-      try {
-        console.log('%c[SelfTest] start','color: #2563eb');
-        // yjIsEmpty
-        console.assert(yjIsEmpty([])===true,'yjIsEmpty([]) 應為 true');
-        console.assert(yjIsEmpty(['无'])===true,'yjIsEmpty(["无"]) 應為 true');
-        console.assert(yjIsEmpty('無')===true,'yjIsEmpty("無") 應為 true');
-        console.assert(yjIsEmpty(['忌'])===false,'yjIsEmpty(["忌"]) 應為 false');
-        // advance
-        console.assert(advance('2025-08-10','DAILY',2)==='2025-08-12','每日+2 天');
-        console.assert(advance('2025-08-10','WEEKLY',2)==='2025-08-24','每週+2 週');
-        console.assert(advance('2025-08-10','MONTHLY',2)==='2025-10-10','每月+2 月');
-        // occursOnDate：跨日事件
-        (function(){
-          const ev={startDate:'2025-08-10',endDate:'2025-08-12',repeat:{freq:'none'}};
-          console.assert(occursOnDate(ev,new Date('2025-08-11'))===true,'跨日 8/10~8/12 應涵蓋 8/11');
-        })();
-        // occursOnDate：每 2 週
-        (function(){
-          const ev={startDate:'2025-08-10',endDate:'2025-08-10',repeat:{freq:'WEEKLY',interval:2}};
-          console.assert(occursOnDate(ev,new Date('2025-08-24'))===true,'每2週 應命中 8/24');
-          console.assert(occursOnDate(ev,new Date('2025-08-17'))===false,'每2週 不應命中 8/17');
-        })();        // zhi 保留測試（丑 不應被轉為 醜）
-        console.assert(zhiToRange('丑')==='01:00–03:00','丑 對應 01:00–03:00');
-        console.assert(zhiToRange('醜')==='01:00–03:00','醜 也應對應 01:00–03:00');
-        (function(){ const raw='丑'; const name=(typeof ZHI_SET!=='undefined' && ZHI_SET.has(raw))? raw : S2T(raw); console.assert(name==='丑','地支「丑」不應被轉成「醜」'); })();
-
-        console.log('%c[SelfTest] all passed','color: #16a34a');
-      } catch(err){
-        console.error('[SelfTest] failed', err);
-      }
-    })();
   </script>
 </body>
 </html>
