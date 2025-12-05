@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Bus Page</title>
+    <title>Bus Page</title>
     <meta charset="UTF-8">
+
     <style>
-        button {
+        /* 時鐘 */
+        span {
+            text-align: center;
+            font-size: 100px;
             display: block;
             margin: 0 auto;
+        }
+
+        /* 大型按鈕（公車、股票） */
+        button.big {
+            display: block;
+            margin: 10px auto;
             background-color: #4CAF50;
             color: white;
             padding: 10px;
@@ -16,102 +26,115 @@
             cursor: pointer;
             font-size: 100px;
         }
-        span {
-            text-align: center;
-            font-size: 100px;
-            display: block;
-            margin: 0 auto;
+
+        /* 展開/收合的小字按鈕 */
+        button.toggle-btn {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px;
+            font-size: 60px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        /* 收合用 class */
+        .hidden {
+            display: none;
+        }
+
+        /* iframe 容器外觀 */
+        article {
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 70vh;
         }
     </style>
 </head>
+
 <body>
+
     <span id="time"></span>
-	<section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-  <!-- 西區按鈕 -->
-  <button id="toggle-west" class="text-blue-600 underline mb-2 text-left">
-    ▶ 展開「西區」預報
-  </button>
+    <!-- 氣象區塊 -->
+    <section>
 
-  <!-- 西區區塊 -->
-  <article id="panel-west" class="rounded-2xl overflow-hidden shadow border bg-white hidden">
-    <div class="h-[70vh] md:h-[75vh]">
-      <iframe id="iframe-west" title="臺中市西區 鄉鎮預報"
-              src="https://www.cwa.gov.tw/V8/C/W/Town/Town.html?TID=6600400"
-              referrerpolicy="no-referrer"
-              loading="lazy"
-              class="w-full h-full"></iframe>
-    </div>
-  </article>
+        <!-- 西區按鈕 -->
+        <button id="toggle-west" class="toggle-btn">▶ 展開「西區」預報</button>
 
-  <!-- 潭子區按鈕 -->
-  <button id="toggle-tanzi" class="text-blue-600 underline mb-2 text-left">
-    ▶ 展開「潭子區」預報
-  </button>
+        <article id="panel-west" class="hidden">
+            <iframe id="iframe-west"
+                src="https://www.cwa.gov.tw/V8/C/W/Town/Town.html?TID=6600400"
+                referrerpolicy="no-referrer"
+                loading="lazy"></iframe>
+        </article>
 
-  <!-- 潭子區區塊 -->
-  <article id="panel-tanzi" class="rounded-2xl overflow-hidden shadow border bg-white hidden">
-    <div class="h-[70vh] md:h-[75vh]">
-      <iframe id="iframe-tanzi" title="臺中市潭子區 鄉鎮預報"
-              src="https://www.cwa.gov.tw/V8/C/W/Town/Town.html?TID=6601700"
-              referrerpolicy="no-referrer"
-              loading="lazy"
-              class="w-full h-full"></iframe>
-    </div>
-  </article>
+        <!-- 潭子區按鈕 -->
+        <button id="toggle-tanzi" class="toggle-btn">▶ 展開「潭子區」預報</button>
 
-</section>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#473'">美術館正門75</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#2907'">東興大墩五街127</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#2317'">11九九往中山堂</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#3348'">11美村藥局往中山堂</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#617'">11中山堂回家</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#4801'">環中豐樂路口127</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#217'">五權東興回家</button><br>
-    	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#111'">二市回家30、40</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#736'">五權學士路口回家</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#859'">北屯行政大樓回家</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#858'">北屯行政大樓菜園</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#340'">中友正對面往菜園</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#226'">中友加油站對面往菜園</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#891'">錦村市場回家</button><br>
-	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#3746'">居士林櫻花站回家</button><br>
-	<button onclick="location.href='https://www.google.com/finance/quote/2014:TPE'">中鴻</button><br>
-	<button onclick="location.href='https://www.google.com/finance/quote/2323:TPE'">中環</button><br>
-	<button onclick="location.href='https://www.google.com/finance/quote/2406:TPE'">國碩</button><br>
-	<button onclick="location.href='https://www.google.com/finance/quote/2515:TPE'">中工</button><br>
+        <article id="panel-tanzi" class="hidden">
+            <iframe id="iframe-tanzi"
+                src="https://www.cwa.gov.tw/V8/C/W/Town/Town.html?TID=6601700"
+                referrerpolicy="no-referrer"
+                loading="lazy"></iframe>
+        </article>
+
+    </section>
+
+    <!-- 公車按鈕 -->
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#473'">美術館正門75</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#2907'">東興大墩五街127</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#2317'">11九九往中山堂</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#3348'">11美村藥局往中山堂</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#617'">11中山堂回家</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#4801'">環中豐樂路口127</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#217'">五權東興回家</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#111'">二市回家30、40</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#736'">五權學士路口回家</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#859'">北屯行政大樓回家</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#858'">北屯行政大樓菜園</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#340'">中友正對面往菜園</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#226'">中友加油站對面往菜園</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#891'">錦村市場回家</button>
+    <button class="big" onclick="location.href='https://citybus.taichung.gov.tw/estop/#3746'">居士林櫻花站回家</button>
+
+    <!-- 股票 -->
+    <button class="big" onclick="location.href='https://www.google.com/finance/quote/2014:TPE'">中鴻</button>
+    <button class="big" onclick="location.href='https://www.google.com/finance/quote/2323:TPE'">中環</button>
+    <button class="big" onclick="location.href='https://www.google.com/finance/quote/2406:TPE'">國碩</button>
+    <button class="big" onclick="location.href='https://www.google.com/finance/quote/2515:TPE'">中工</button>
+
 <script>
-setInterval(function(){
-	var time = new Date().toLocaleTimeString();
-	document.getElementById("time").innerHTML = time;
+// 時鐘
+setInterval(() => {
+    document.getElementById("time").innerHTML =
+        new Date().toLocaleTimeString();
 }, 1000);
-// 共用的展開/收合函式
-function setupToggle(buttonId, panelId, label) {
-	const btn = document.getElementById(buttonId);
-	const panel = document.getElementById(panelId);
-	
-	btn.addEventListener('click', () => {
-	  const isHidden = panel.classList.contains('hidden');
-	  panel.classList.toggle('hidden');
-	
-	  btn.textContent = isHidden ? `▼ 收合「${label}」預報` : `▶ 展開「${label}」預報`;
-	});
+
+// 展開/收合函式
+function setupToggle(btnId, panelId, label) {
+    const btn = document.getElementById(btnId);
+    const panel = document.getElementById(panelId);
+
+    btn.addEventListener("click", () => {
+        const opening = panel.classList.contains("hidden");
+        panel.classList.toggle("hidden");
+
+        btn.textContent = opening
+            ? `▼ 收合「${label}」預報`
+            : `▶ 展開「${label}」預報`;
+    });
 }
 
 setupToggle("toggle-west", "panel-west", "西區");
 setupToggle("toggle-tanzi", "panel-tanzi", "潭子區");
-
-// 重載 iframe 按鈕（你原本的功能）
-document.getElementById('reloadBtn')?.addEventListener('click', () => {
-	for (const id of ['iframe-west', 'iframe-tanzi']) {
-	  const el = document.getElementById(id);
-	  const src = new URL(el.src);
-	  src.searchParams.set('_ts', Date.now());
-	  el.src = src.toString();
-	}
-});
-
-document.getElementById('printBtn')?.addEventListener('click', () => window.print());
 </script>
+
 </body>
 </html>
