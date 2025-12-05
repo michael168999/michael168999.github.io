@@ -26,6 +26,41 @@
 </head>
 <body>
     <span id="time"></span>
+	<section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+  <!-- 西區按鈕 -->
+  <button id="toggle-west" class="text-blue-600 underline mb-2 text-left">
+    ▶ 展開「西區」預報
+  </button>
+
+  <!-- 西區區塊 -->
+  <article id="panel-west" class="rounded-2xl overflow-hidden shadow border bg-white hidden">
+    <div class="h-[70vh] md:h-[75vh]">
+      <iframe id="iframe-west" title="臺中市西區 鄉鎮預報"
+              src="https://www.cwa.gov.tw/V8/C/W/Town/Town.html?TID=6600400"
+              referrerpolicy="no-referrer"
+              loading="lazy"
+              class="w-full h-full"></iframe>
+    </div>
+  </article>
+
+  <!-- 潭子區按鈕 -->
+  <button id="toggle-tanzi" class="text-blue-600 underline mb-2 text-left">
+    ▶ 展開「潭子區」預報
+  </button>
+
+  <!-- 潭子區區塊 -->
+  <article id="panel-tanzi" class="rounded-2xl overflow-hidden shadow border bg-white hidden">
+    <div class="h-[70vh] md:h-[75vh]">
+      <iframe id="iframe-tanzi" title="臺中市潭子區 鄉鎮預報"
+              src="https://www.cwa.gov.tw/V8/C/W/Town/Town.html?TID=6601700"
+              referrerpolicy="no-referrer"
+              loading="lazy"
+              class="w-full h-full"></iframe>
+    </div>
+  </article>
+
+</section>
 	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#473'">美術館正門75</button><br>
 	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#2907'">東興大墩五街127</button><br>
 	<button onclick="location.href='https://citybus.taichung.gov.tw/estop/#2317'">11九九往中山堂</button><br>
@@ -45,11 +80,38 @@
 	<button onclick="location.href='https://www.google.com/finance/quote/2323:TPE'">中環</button><br>
 	<button onclick="location.href='https://www.google.com/finance/quote/2406:TPE'">國碩</button><br>
 	<button onclick="location.href='https://www.google.com/finance/quote/2515:TPE'">中工</button><br>
-    <script>
-        setInterval(function(){
-            var time = new Date().toLocaleTimeString();
-            document.getElementById("time").innerHTML = time;
-        }, 1000);
-    </script>
+<script>
+setInterval(function(){
+	var time = new Date().toLocaleTimeString();
+	document.getElementById("time").innerHTML = time;
+}, 1000);
+// 共用的展開/收合函式
+function setupToggle(buttonId, panelId, label) {
+	const btn = document.getElementById(buttonId);
+	const panel = document.getElementById(panelId);
+	
+	btn.addEventListener('click', () => {
+	  const isHidden = panel.classList.contains('hidden');
+	  panel.classList.toggle('hidden');
+	
+	  btn.textContent = isHidden ? `▼ 收合「${label}」預報` : `▶ 展開「${label}」預報`;
+	});
+}
+
+setupToggle("toggle-west", "panel-west", "西區");
+setupToggle("toggle-tanzi", "panel-tanzi", "潭子區");
+
+// 重載 iframe 按鈕（你原本的功能）
+document.getElementById('reloadBtn')?.addEventListener('click', () => {
+	for (const id of ['iframe-west', 'iframe-tanzi']) {
+	  const el = document.getElementById(id);
+	  const src = new URL(el.src);
+	  src.searchParams.set('_ts', Date.now());
+	  el.src = src.toString();
+	}
+});
+
+document.getElementById('printBtn')?.addEventListener('click', () => window.print());
+</script>
 </body>
 </html>
